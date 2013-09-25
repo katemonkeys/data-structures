@@ -5,7 +5,7 @@ var makeStack = function(){
   instance.storage = {};
   instance.len = 0; // Hint: set an initial value here
 
-  extend(instance, makeStack.stackMethods);
+  extend(instance, stackMethods);
 
   return instance;
 };
@@ -17,7 +17,7 @@ var extend = function(to,from) {
   }
 };
 
-makeStack.stackMethods = {
+var stackMethods = {
 
   push: function(value){
     this.storage[this.len] = value;
@@ -28,7 +28,7 @@ makeStack.stackMethods = {
 
     var element;
     if (this.len) {
-      element = storage[this.len-1];
+      element = this.storage[this.len-1];
       // delete storage[size];
       this.len--;
     }
