@@ -36,5 +36,18 @@ describe("tree", function() {
     expect(root.contains(4)).toEqual(true);
     expect(root.contains(9.3)).toEqual(false);
   });
+
+  it("should reference its parent node", function(){
+
+      var root = makeTree(1);
+      var child = root.addChild(2);
+      var grandchild = child.addChild(3);
+
+      expect(child.parent).toEqual(root);
+      expect(child.parent.value).toEqual(1);
+
+      expect(grandchild.parent).toEqual(child);
+      expect(grandchild.parent.value).toEqual(2);
+  });
   
 });

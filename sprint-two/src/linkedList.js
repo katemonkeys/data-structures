@@ -8,9 +8,21 @@ var makeLinkedList = function(){
 
     var node = makeNode(value);
 
+    node.previous = list.tail;
+
     list.tail ? list.tail.next = node : list.head = node;
 
     list.tail = node;
+
+    return node;
+  };
+
+  list.addToHead = function(value){
+    var node = makeNode(value);
+    list.head.previous = node;
+    node.next = list.head;
+    list.head = node;
+    return node;
   };
 
   list.removeHead = function(){
@@ -19,7 +31,21 @@ var makeLinkedList = function(){
 
     list.head = list.head.next;
 
+    list.head.previous = null;
+
     return headNode;
+  };
+
+  list.removeTail = function(){
+
+    var tailNode = list.tail;
+
+    list.tail = list.tail.previous;
+
+    list.tail.next = null;
+
+    return tailNode;
+
   };
 
   list.contains = function(value){
@@ -43,6 +69,7 @@ var makeNode = function(value){
   var node = {};
   node.value = value;
   node.next = null;
+  node.previous = null;
 
   return node;
 };
