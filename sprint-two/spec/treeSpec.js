@@ -49,5 +49,22 @@ describe("tree", function() {
       expect(grandchild.parent).toEqual(child);
       expect(grandchild.parent.value).toEqual(2);
   });
-  
+
+  it("should estrange child from parent", function(){
+
+    var root = makeTree(1);
+    var child1 = root.addChild(2);
+    var child2 = root.addChild(3);
+    var grandchild = child1.addChild(4);
+
+    child1.removeFromParent();
+
+    expect(child1.parent).toEqual(null);
+    expect(child2.parent).toEqual(root);
+
+    expect(root.children.length).toEqual(1);
+
+    expect(child1.contains(grandchild.value)).toEqual(true);
+  });
+
 });
