@@ -1,5 +1,5 @@
 var HashTable = function(){
-  this._limit = 8;
+  this._limit = 3;
 
   // Use a limited array to store inserted elements.
   // It'll keep you from using too much space. Usage:
@@ -39,7 +39,46 @@ HashTable.prototype.remove = function(k){
   var all = this._storage.get(i);
   for (var j = 0; j<all.length; j++) {
     if (all[j][0] === k){
-      delete all[j];
+      this._storage.set(i, all.slice(0,j).concat(all.slice(j+1,all.length)));
     }
   }
+};
+
+
+// ----------------------------------------- //
+
+var makeLinkedList = function(){
+
+  var list = {};
+  list.head = null;
+  list.tail = null;
+  list.addToTail = function(value){
+    var node = makeNode(value);
+    list.tail ? list.tail.next = node : list.head = node;
+    list.tail = node;
+  };
+
+  list.removeHead = function(){
+    var headNode = list.head;
+    list.head = list.head.next;
+    return headNode;
+  };
+
+  list.contains = function(value){
+    var node = list.head;
+    while (node) {
+      if (node.value === value)
+        return true;
+      node = node.next;
+    }
+    return false;
+  };
+  return list;
+};
+
+var makeNode = function(value){
+  var node = {};
+  node.value = value;
+  node.next = null;
+  return node;
 };
