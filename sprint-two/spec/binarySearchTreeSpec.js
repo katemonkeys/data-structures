@@ -16,7 +16,7 @@ describe("binarySearchTree", function() {
     expect(binarySearchTree.depthFirstLog).toEqual(jasmine.any(Function));
   });
 
-  it("should have .left and .right properties, where all values are lower than the higher value, respectively, the current value", function(){
+  it("should have .left and .right properties, which place all lower values to the left and all higher values to the right, respectively", function(){
     expect(binarySearchTree._root.left).toNotEqual(null);
     expect(binarySearchTree._root.left.value).toEqual(2);
     expect(binarySearchTree._root.left.left.value).toEqual(1);
@@ -34,12 +34,12 @@ describe("binarySearchTree", function() {
   it("should have a .contains method, which accepts a value and returns a boolean reflecting whether or not the value is contained in the tree", function(){
 
     expect(binarySearchTree.contains(5)).toEqual(true);
-    expect(binarySearchTree.contains(50)).toEqual(true);
+    expect(binarySearchTree.contains(50)).toEqual(false);
 
   });
 
-  // it("should have a . .depthFirstLog() method, which accepts a callback and executes it on every value contained in the tree.", function(){
-
-  // });
+  it("should have a .depthFirstLog() method, which accepts a callback and executes it on every value contained in the tree.", function(){
+    expect(function(){}).toEqual(36);
+  });
 
 });

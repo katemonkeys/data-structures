@@ -1,11 +1,7 @@
 var makeBinarySearchTree = function(value){
-
   var BST = {};
-
   BST._root = null;
-
   extend(BST, BSTMethods);
-
   return BST;
 };
 
@@ -69,44 +65,44 @@ BSTMethods.insert = function(value) {
 };
 
 BSTMethods.contains = function(target) {
+  var isFound;
+  var current = this._root;
 
   if (this._root === null) {
-    this._root = node;
+    isFound = false;
   }
 
   else {
-
-    var current = this._root;
-
     while (true) {
-
-      if (value < current.value) {
-
+      if (target < current.value) {
         if (current.left === null) {
-          current.left = node;
+          isFound = false;
           break;
         }
-        else
-          current = current.left;
+        else { current = current.left; }
       }
 
-      else if (value > current.value) {
-
+      else if (target > current.value) {
         if (current.right === null) {
-          current.right = node;
+          isFound = false;
           break;
         }
-        else
-          current = current.right;
-
+        else {current = current.right;}
       }
 
-      else {
-       break;
-     }
+      else if (target === current.value)
+      {
+        isFound = true;
+        break;
+      }
     }
   }
+  return isFound;
 
 };
 
-BSTMethods.depthFirstLog = function() {};
+BSTMethods.depthFirstLog = function(callback) {
+
+  
+
+};
