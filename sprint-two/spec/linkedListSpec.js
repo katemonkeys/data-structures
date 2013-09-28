@@ -18,7 +18,6 @@ describe("linkedList", function() {
   });
 
   it("takes a value and adds it to the end of the list", function(){
-
     linkedList.addToTail(1);
     expect(linkedList.tail.value).toEqual(1);
   });

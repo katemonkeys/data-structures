@@ -2,14 +2,21 @@ var makeBinarySearchTree = function(value){
 
   var BST = {};
 
-  BST.value = value || 0;
-  BST.left = null;
-  BST.right = null;
-//BST.parent = this;
+  BST._root = null;
 
   extend(BST, BSTMethods);
 
   return BST;
+};
+
+var makeBSTNode = function(value) {
+  var node = {};
+
+  node.value = value;
+  node.left = null;
+  node.right = null;
+
+  return node;
 };
 
 var extend = function(to, from) {
@@ -20,28 +27,86 @@ var extend = function(to, from) {
 var BSTMethods = {};
 
 BSTMethods.insert = function(value) {
-  // var newValueToCompare = comparison;
-  // if (value < this.value && this.left) {
-  //   newValueToCompare = this.left;
-  //   this.insert(newValueToCompare);
-  // }
-  // else if (value > this.value && this.right) {
-  //   newValueToCompare = this.right;
-  //   this.insert(newValueToCompare);
-  // }
-  // else {
-  //   var node = makeBinarySearchTree(value);
-  //   if (value > this.value) {
-  //     this.right = node;
-  //   }
-  //   else {
-  //     this.left = node;
-  //   }
-  // }
-//probably could add a return statement like "nothing to insert" if value === comparison //
+
+  var node = makeBSTNode(value);
+
+  if (this._root === null) {
+    this._root = node;
+  }
+
+  else {
+
+    var current = this._root;
+
+    while (true) {
+
+      if (value < current.value) {
+
+        if (current.left === null) {
+          current.left = node;
+          break;
+        }
+        else
+          current = current.left;
+      }
+
+      else if (value > current.value) {
+
+        if (current.right === null) {
+          current.right = node;
+          break;
+        }
+        else
+          current = current.right;
+
+      }
+
+      else {
+       break;
+     }
+    }
+  }
 };
 
-BSTMethods.contains = function(target) {};
+BSTMethods.contains = function(target) {
+
+  if (this._root === null) {
+    this._root = node;
+  }
+
+  else {
+
+    var current = this._root;
+
+    while (true) {
+
+      if (value < current.value) {
+
+        if (current.left === null) {
+          current.left = node;
+          break;
+        }
+        else
+          current = current.left;
+      }
+
+      else if (value > current.value) {
+
+        if (current.right === null) {
+          current.right = node;
+          break;
+        }
+        else
+          current = current.right;
+
+      }
+
+      else {
+       break;
+     }
+    }
+  }
+
+};
 
 BSTMethods.depthFirstLog = function() {};
-

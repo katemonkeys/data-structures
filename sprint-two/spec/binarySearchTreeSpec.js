@@ -4,6 +4,10 @@ describe("binarySearchTree", function() {
 
   beforeEach(function() {
     binarySearchTree = makeBinarySearchTree();
+
+    for (var i = 0; i < data.length; i++) {
+      binarySearchTree.insert(data[i]);
+    }
   });
 
   it("should have methods named 'insert', 'contains', and 'depthFirstLog'", function() {
@@ -12,26 +16,27 @@ describe("binarySearchTree", function() {
     expect(binarySearchTree.depthFirstLog).toEqual(jasmine.any(Function));
   });
 
-  // it("should have a .left property, where all values are lower than the current value", function(){
+  it("should have .left and .right properties, where all values are lower than the higher value, respectively, the current value", function(){
+    expect(binarySearchTree._root.left).toNotEqual(null);
+    expect(binarySearchTree._root.left.value).toEqual(2);
+    expect(binarySearchTree._root.left.left.value).toEqual(1);
+    expect(binarySearchTree._root.left.right.value).toEqual(3);
+    expect(binarySearchTree._root.right.left.value).toEqual(5);
+  });
 
-  //   for (var i = 0; i < data.length; i++) {
-  //     binarySearchTree.insert(data[i]);
-  //   }
-  //   expect(binarySearchTree.left).toEqual(2);
+  it("should have a .insert property, which accepts a value and places it in the tree in the correct position", function(){
+    expect(binarySearchTree._root.left.value < binarySearchTree._root.right.value).toEqual(true);
+    expect(binarySearchTree._root.left.left.value < binarySearchTree._root.left.right.value).toEqual(true);
+  });
 
-  // });
 
-  // it("should have a .right property, where all values are higher than the current value", function(){
 
-  // });
+  it("should have a .contains method, which accepts a value and returns a boolean reflecting whether or not the value is contained in the tree", function(){
 
-  // it("should have a .insert property, which accepts a value and places it in the tree in the correct position", function(){
+    expect(binarySearchTree.contains(5)).toEqual(true);
+    expect(binarySearchTree.contains(50)).toEqual(true);
 
-  // });
-
-  // it("should have a .contains method, which accepts a value and returns a boolean reflecting whether or not the value is contained in the tree", function(){
-
-  // });
+  });
 
   // it("should have a . .depthFirstLog() method, which accepts a callback and executes it on every value contained in the tree.", function(){
 
