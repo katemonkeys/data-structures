@@ -11,6 +11,7 @@ var makeBSTNode = function(value) {
   node.value = value;
   node.left = null;
   node.right = null;
+  node.visited = false;
 
   return node;
 };
@@ -103,46 +104,32 @@ BSTMethods.contains = function(target) {
 
 BSTMethods.depthFirstLog = function(callback) {
 
-  // 
-
-
-
   var results = [];
-  var visited = {};
 
-  var searchForNode = function(node) {
-    if (visited[node] === undefined) results.push(callback(node.value));
-    visited[node] = true;
-    if (node.left !== null && visited[node.left] === undefined) {
-      node = node.left;
-      searchForNode(node);
-    }
-    if (node.right !== null && visited[node.right] === undefined) {
-      node = node.right;
-      searchForNode(node);
+  var walk = function(node) {
+
+    if (!node.visited) {
+      results.push(node.value);
+      node.visited = true;
     }
 
-    if (node.right === null || visited[node.right] && node.left === null || visited[node.left]) {
+    if (node.left && !node.left.visited) {
+      walk(node.left);
+    }
+
+    if (node.right && !node.right.visited) {
+      walk(node.right);
+    }
+
+    else {
       return;
     }
-    // else {
-    //   searchForNode(node);
-    // }
-    // return results; //questionable
+
   };
 
-   searchForNode(this._root);
-   return results;
+  walk(this._root);
+
+  return results;
 };
-
-
-
-
-
-
-
-
-
-
 
 
