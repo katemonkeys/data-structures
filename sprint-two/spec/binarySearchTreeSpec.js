@@ -1,18 +1,25 @@
 describe("binarySearchTree", function() {
   var binarySearchTree;
   var binarySearchTree2;
+  var binarySearchTree3;
+  
   var data1 = [4,2,6,1,3,5,7,8,0];
   var data2 = [4,2,1,3];
+  var data3 = [4];
 
   beforeEach(function() {
     binarySearchTree = makeBinarySearchTree();
     binarySearchTree2 = makeBinarySearchTree();
+    binarySearchTree3 = makeBinarySearchTree();
 
     for (var i = 0; i < data1.length; i++) {
       binarySearchTree.insert(data1[i]);
     }
     for (var j = 0; j < data2.length; j++) {
       binarySearchTree2.insert(data2[j]);
+    }
+    for (var k = 0; k < data3.length; k++) {
+      binarySearchTree3.insert(data3[k]);
     }
   });
 
@@ -45,10 +52,10 @@ describe("binarySearchTree", function() {
   });
 
   it("should have a .depthFirstLog() method, which accepts a callback and executes it on every value contained in the tree.", function(){
-    var callback = function(a) {return a;};
-    expect(binarySearchTree.depthFirstLog(callback)[0]).toEqual(4);
-    expect(binarySearchTree2.depthFirstLog(callback)).toEqual([4,2,1,3]);    
+    var callback = function(a) {return a.value;};
     expect(binarySearchTree.depthFirstLog(callback)).toEqual([4,2,1,0,3,6,5,7,8]);
+    expect(binarySearchTree2.depthFirstLog(callback)).toEqual([4,2,1,3]);
+    expect(binarySearchTree3.depthFirstLog(callback)[0]).toEqual(4);
   });
 
 });
